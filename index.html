@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة كابتن مصر - إشراف محمد سيد كمال</title>
+    <style>
+        :root {
+            --primary: #27ae60;
+            --accent: #f1c40f;
+            --dark: #121212;
+            --card: #1e1e1e;
+            --text: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            padding-bottom: 30px;
+        }
+
+        /* هيدر الشركة */
+        .header {
+            background: linear-gradient(90deg, #11998e, #38ef7d);
+            color: #000;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        /* شريط التنقل */
+        .nav-tabs {
+            display: flex;
+            background: #252525;
+            justify-content: center;
+            border-bottom: 2px solid #333;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            color: #aaa;
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            background: #2a2a2a;
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .file-input-wrapper {
+            border: 2px dashed #555;
+            padding: 15px;
+            text-align: center;
+            border-radius: 12px;
+            background: #252525;
+            cursor: pointer;
+        }
+
+        .file-input-wrapper input {
+            display: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* لوحة تحكم الأدمن */
+        .driver-approval-card {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-right: 5px solid var(--accent);
+        }
+
+        .doc-preview {
+            width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-approve {
+            flex: 1;
+            background: var(--primary);
+            color: white; border: none;
+            padding: 8px; border-radius: 8px; cursor: pointer;
+        }
+
+        .btn-reject {
+            flex: 1;
+            background: #e74c3c;
+            color: white; border: none;
+            padding: 8px; border-radius: 8px; cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            color: #777;
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- هيدر الشركة -->
+    <div class="header">
+        👑 شركة كابتن مصر للنقل - رئيس مجلس الإدارة: محمد سيد كمال
+    </div>
+
+    <!-- أزرار التنقل بين الشاشات -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('driver-reg')">📝 انضم ككابتن</button>
+        <button class="tab-btn" onclick="switchTab('admin-panel')">⚙️ لوحة الإدارة (خاصة بالشركة)</button>
+    </div>
+
+    <div class="container">
+
+        <!-- 1. نموذج تسجيل كابتن جديد -->
+        <div id="driver-reg" class="tab-content">
+            <div class="card">
+                <h3 style="color: var(--accent); margin-bottom: 15px;">طلب انضمام سائق جديد 🚗</h3>
+                
+                <div class="form-group">
+                    <label>الاسم بالكامل (كما في البطاقة):</label>
+                    <input type="text" id="d-name" placeholder="أدخل اسمك رباعي">
+                </div>
+
+                <div class="form-group">
+                    <label>رقم الهاتف (واتساب):</label>
+                    <input type="tel" id="d-phone" placeholder="01xxxxxxxxx">
+                </div>
+
+                <div class="form-group">
+                    <label>نوع المركبة:</label>
+                    <select id="d-type">
+                        <option>سيارة ملاكي (اركومست / موفر)</option>
+                        <option>تاكسي أبيض</option>
+                        <option>توك توك / تروسيكل</option>
+                        <option>سكوتر / دراجة نارية</option>
+                    </select>
+                </div>
+
+                <!-- رفع صورة البطاقة -->
+                <div class="form-group">
+                    <label>صورة البطاقة الشخصية (وجه أمامي):</label>
+                    <div class="file-input-wrapper" onclick="document.getElementById('id-card-img').click()">
+                        📷 اضغط هنا لرفع صورة البطاقة
+                        <input type="file" id="id-card-img" accept="image/*" onchange="previewFile(this, 'id-preview')">
+                    </div>
+                    <img id="id-preview" class="doc-preview" style="display:none;">
+                </div>
+
+                <!-- رفع صورة الرخصة -->
+                <div class="form-group">
+                    <label>صورة رخصة القيادة / السيارة:</label>
+                    <div class="file-input-wrapper" onclick="document.getElementById('license-img').click()">
+                        📄 اضغط هنا لرفع صورة الرخصة
+                        <input type="file" id="license-img" accept="image/*" onchange="previewFile(this, 'license-preview')">
+                    </div>
+                    <img id="license-preview" class="doc-preview" style="display:none;">
+                </div>
+
+                <button class="btn-submit" onclick="submitDriverApp()">إرسال الأوراق للمراجعة 📤</button>
+            </div>
+        </div>
+
+        <!-- 2. لوحة تحكم الشركة لمحمد سيد كمال -->
+        <div id="admin-panel" class="tab-content" style="display:none;">
+            <div class="card">
+                <h3 style="color: var(--accent); margin-bottom: 10px;">طلبات الانضمام المعلقة 📋</h3>
+                <p style="font-size: 0.85rem; color:#aaa; margin-bottom:15px;">مرحباً بك يا أ/ محمد سيد كمال. يمكنك مراجعة وتفعيل السائقين من هنا:</p>
+                
+                <div id="drivers-queue-list">
+                    <!-- الطلبات تظهر هنا تلقائياً -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        تطوير وتصميم وإدارة: <strong>محمد سيد كمال</strong> © 2026
+    </footer>
+
+    <script>
+        // التبديل بين التبويبات
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).style.display = 'block';
+            event.target.classList.add('active');
+
+            if(tabId === 'admin-panel') {
+                renderAdminQueue();
+            }
+        }
+
+        // معاينة الصور المرفوعة
+        function previewFile(input, previewId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(previewId);
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // إرسال البيانات وتخزينها
+        function submitDriverApp() {
+            const name = document.getElementById('d-name').value;
+            const phone = document.getElementById('d-phone').value;
+            const type = document.getElementById('d-type').value;
+            const idImg = document.getElementById('id-preview').src;
+            const licenseImg = document.getElementById('license-preview').src;
+
+            if(!name || !phone || !idImg) {
+                alert('من فضلك ادخل جميع البيانات الأساسية وارفع صورة البطاقة!');
+                return;
+            }
+
+            const newDriver = {
+                id: Date.now(),
+                name: name,
+                phone: phone,
+                type: type,
+                idCard: idImg,
+                license: licenseImg,
+                status: 'معلق'
+            };
+
+            let drivers = JSON.parse(localStorage.getItem('company_drivers')) || [];
+            drivers.push(newDriver);
+            localStorage.setItem('company_drivers', JSON.stringify(drivers));
+
+            alert('تم إرسال بياناتك بنجاح للشركة! سيتم مراجعة أوراقك من قبل أ/ محمد سيد كمال وتفعيل حسابك.');
+            
+            // تفريغ الحقول
+            document.getElementById('d-name').value = '';
+            document.getElementById('d-phone').value = '';
+            document.getElementById('id-preview').style.display = 'none';
+            document.getElementById('license-preview').style.display = 'none';
+        }
+
+        // عرض السائقين في لوحة الشركة (الأدمن)
